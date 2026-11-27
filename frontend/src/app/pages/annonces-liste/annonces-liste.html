@@ -1,0 +1,114 @@
+<div class="liste-page">
+  
+  <!-- NAVBAR DYNAMIQUE PRO -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">IMMO<span>SMART</span>.</div>
+      
+      <nav class="nav-links">
+        
+        <a routerLink="/accueil" routerLinkActive="active">Accueil</a>
+
+        <!-- SI CONNECTÉ (UTILISATEUR) -->
+        <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+          
+          <div class="user-dropdown">
+            <button class="dropdown-btn" (click)="toggleMenu()">
+              <div class="avatar">{{ userInitial }}</div>
+              <span class="user-name">{{ userPrenom }}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="dropdown-menu" *ngIf="isMenuOpen">
+              <a routerLink="/utilisateur/profil" (click)="isMenuOpen = false">Mon Profil</a>
+              <a routerLink="/utilisateur/favoris" (click)="isMenuOpen = false">Mes Favoris</a>
+              <a routerLink="/utilisateur/demandes" (click)="isMenuOpen = false">Mes Demandes</a>
+              <div class="divider"></div>
+              <button (click)="deconnexion()" class="logout-link">Déconnexion</button>
+            </div>
+          </div>
+
+        </ng-container>
+
+        <!-- SI NON CONNECTÉ (VISITEUR) -->
+        <ng-template #notLoggedIn>
+          <a routerLink="/login" class="btn-login-outline">Se connecter</a>
+          <a routerLink="/register" class="btn-register-fill">Inscription</a>
+        </ng-template>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- EN-TÊTE DE PAGE -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Le Catalogue Immobilier</h1>
+      <p>Découvrez l'ensemble de nos biens disponibles en Tunisie.</p>
+    </div>
+  </div>
+
+  <!-- CONTENEUR PRINCIPAL -->
+  <main class="main-container">
+    
+    <div class="results-header">
+      <p>Affichage de <strong>{{ annonces.length }}</strong> bien(s) disponible(s)</p>
+    </div>
+
+    <section class="annonces-section">
+      <div class="annonces-grid">
+        <div class="card" *ngFor="let a of annonces">
+          
+          <!-- CASE À COCHER : UNIQUEMENT POUR LES UTILISATEURS CONNECTÉS -->
+          <div class="compare-checkbox" *ngIf="isLoggedIn" (click)="toggleSelection(a)">
+            <input type="checkbox" [checked]="isSelected(a)" readonly>
+            <span>Comparer</span>
+          </div>
+
+          <div class="card-image">
+            <img [src]="a.photo_url ? (a.photo_url.startsWith('http') ? a.photo_url : 'http://localhost:8081/uploads/' + a.photo_url) : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80'" alt="Bien immobilier">
+            <span class="badge" [ngClass]="(a.transaction_nom | lowercase) === 'vente' ? 'badge-vente' : 'badge-location'">
+              {{ (a.transaction_nom | lowercase) === 'vente' ? 'À vendre' : 'À louer' }}
+            </span>
+          </div>
+
+          <div class="card-content">
+            <p class="location">{{ a.region_nom }}</p>
+            <h3>{{ a.titre }}</h3>
+            <div class="card-middle">
+              <span class="price">{{ a.prix }} DT</span>
+              <span class="surface">{{ a.surface }} m²</span>
+            </div>
+            <div class="card-bottom">
+              <a [routerLink]="['/annonce', a.id]" class="btn-details">Découvrir la propriété</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p *ngIf="annonces.length === 0" class="empty">Aucune annonce disponible pour le moment.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">IMMOSMART.</div>
+      <p class="footer-copy">© 2026 ImmoSmart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <!--  BARRE FLOTTANTE : UNIQUEMENT POUR LES UTILISATEURS CONNECTÉS -->
+  <div class="compare-bar" *ngIf="isLoggedIn && selection.length > 0">
+    <div class="compare-bar-content">
+      <span><strong>{{ selection.length }}</strong> bien(s) sélectionné(s)</span>
+      <div class="compare-bar-actions">
+        <button class="btn-compare" (click)="comparer()" [disabled]="selection.length < 2">
+          Comparer
+        </button>
+        <button class="btn-clear" (click)="selection = []">Vider</button>
+      </div>
+    </div>
+  </div>
+
+</div>

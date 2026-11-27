@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+/* ========== PAGE ========== */
+.favoris-page { 
+  width: 100%; 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif; 
+  color: #1E293B; 
+}
+
+/* ========== BOUTON RETOUR ========== */
+.top-actions {
+  margin-bottom: 24px;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #FFFFFF;
+  color: #1E293B;
+  border: 3px solid #1E293B;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 4px 4px 0px #1E293B;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-back:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+  background: #F8FAFC;
+}
+
+.btn-back:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* ========== EN-TÊTE ========== */
+.page-header { 
+  margin-bottom: 30px; 
+  padding-bottom: 20px; 
+  border-bottom: 3px solid #1E293B; 
+}
+.page-header h1 { 
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; 
+  font-weight: 700; 
+  margin: 0 0 6px 0; 
+}
+.subtitle { 
+  color: #64748B; 
+  font-weight: 500; 
+  margin: 0; 
+}
+
+/* ========== GRILLE ========== */
+.annonces-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+  gap: 30px; 
+}
+
+/* ========== CARTE ========== */
+.card { 
+  background: #FFF; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  border: 3px solid #1E293B; 
+  box-shadow: 6px 6px 0px #1E293B; 
+  display: flex; 
+  flex-direction: column; 
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #1E293B;
+}
+
+/* Image */
+.card-image { 
+  position: relative; 
+  height: 220px; 
+  border-bottom: 3px solid #1E293B; 
+}
+.card-image img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+/* Badge */
+.badge { 
+  position: absolute; 
+  top: 15px; 
+  left: 15px; 
+  padding: 6px 12px; 
+  font-size: 11px; 
+  font-weight: 800; 
+  text-transform: uppercase; 
+  border: 2px solid #1E293B; 
+  box-shadow: 2px 2px 0px #1E293B; 
+  color: #FFF; 
+}
+.badge-vente { background: #4F46E5; }
+.badge-location { background: #10B981; }
+
+/* Contenu */
+.card-content { 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: column; 
+  flex: 1; 
+}
+.location { 
+  font-size: 12px; 
+  font-weight: 800; 
+  text-transform: uppercase; 
+  margin-bottom: 8px; 
+  color: #64748B;
+}
+.card-content h3 { 
+  font-family: 'Playfair Display', serif; 
+  font-size: 20px; 
+  margin: 0 0 15px 0; 
+  font-weight: 700; 
+  line-height: 1.3;
+}
+
+/* Prix et Surface */
+.card-middle { 
+  display: flex; 
+  justify-content: space-between; 
+  border-bottom: 2px dashed #CBD5E1; 
+  padding-bottom: 15px; 
+  margin-bottom: 15px; 
+  margin-top: auto; 
+}
+.price { 
+  font-size: 20px; 
+  font-weight: 800; 
+  color: #4F46E5; 
+}
+.surface { 
+  font-weight: 700; 
+}
+
+/* Boutons */
+.btn-details { 
+  text-align: center; 
+  text-decoration: none; 
+  background: #FFF; 
+  color: #1E293B; 
+  padding: 10px; 
+  border-radius: 4px; 
+  font-size: 13px; 
+  font-weight: 800; 
+  text-transform: uppercase; 
+  border: 3px solid #1E293B; 
+  box-shadow: 3px 3px 0px #1E293B; 
+  transition: 0.2s; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-details:hover { 
+  background: #4F46E5; 
+  color: #FFF; 
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #1E293B;
+}
+
+.btn-remove { 
+  background: #EF4444; 
+  color: #FFF; 
+  border: 3px solid #1E293B; 
+  border-radius: 4px; 
+  padding: 10px 15px; 
+  font-weight: 800; 
+  cursor: pointer; 
+  box-shadow: 3px 3px 0px #1E293B; 
+  transition: 0.2s; 
+}
+.btn-remove:hover { 
+  transform: translate(-1px, -1px); 
+  box-shadow: 4px 4px 0px #1E293B; 
+  background: #DC2626;
+}
+
+/* Message vide */
+.empty { 
+  text-align: center; 
+  padding: 40px; 
+  font-weight: 600; 
+  font-style: italic; 
+  background: #FFF; 
+  border: 3px dashed #CBD5E1; 
+  border-radius: 8px; 
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== PAGE ========== */
+.demandes-page {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  color: #1E293B;
+}
+
+/* ========== EN-TÊTE ========== */
+.page-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #1E293B;
+}
+.page-header h1 { font-size: 28px; font-weight: 800; margin: 0 0 6px 0; }
+.subtitle { color: #64748B; font-weight: 500; margin: 0; }
+
+/* ========== CARTE DEMANDE ========== */
+.demandes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.demande-card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 3px solid #1E293B;
+  box-shadow: 6px 6px 0px #1E293B;
+  overflow: hidden; /* Important pour l'accordéon */
+}
+
+/* En-tête cliquable */
+.demande-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: #F8FAFC;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.demande-header:hover { background: #F1F5F9; }
+.demande-header h3 { font-size: 18px; font-weight: 800; margin: 0; }
+
+/* Statut */
+.status {
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: 2px solid #1E293B;
+  box-shadow: 2px 2px 0px #1E293B;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-green { background: #10B981; color: #FFF; }
+.status-amber { background: #F59E0B; color: #FFF; }
+.arrow { font-size: 10px; }
+
+/* Contenu interne */
+.demande-content {
+  padding: 24px;
+  border-top: 2px dashed #CBD5E1;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Infos Expéditeur */
+.expediteur-info {
+  background: #F8FAFC;
+  padding: 15px;
+  border: 2px solid #E2E8F0;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.expediteur-info p { margin: 5px 0; font-size: 14px; }
+.expediteur-info strong { color: #4F46E5; }
+
+/* Message Box */
+.message-box {
+  background: #F1F5F9;
+  padding: 15px;
+  border: 2px dashed #CBD5E1;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.message-label { margin: 0 0 8px 0; font-size: 12px; text-transform: uppercase; color: #64748B; font-weight: 800; }
+.message-box p:last-child { margin: 0; font-size: 15px; line-height: 1.6; }
+
+/* Zone de réponse */
+.reponse-section { display: flex; flex-direction: column; gap: 12px; }
+
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 3px solid #1E293B;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  background: #F8FAFC;
+  color: #1E293B;
+  font-weight: 500;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+textarea:focus { outline: none; background: #FFFFFF; box-shadow: 4px 4px 0px #1E293B; }
+
+/* Bouton Brutalist */
+.btn-brutalist {
+  align-self: flex-end;
+  padding: 12px 24px;
+  background: #4F46E5;
+  color: white;
+  border: 3px solid #1E293B;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px #1E293B;
+  transition: all 0.2s ease;
+}
+.btn-brutalist:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #1E293B; }
+.btn-brutalist:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #1E293B; }
+
+/* Message vide */
+.empty {
+  text-align: center;
+  padding: 40px;
+  font-weight: 600;
+  font-style: italic;
+  background: #FFF;
+  border: 3px dashed #CBD5E1;
+  border-radius: 8px;
+}

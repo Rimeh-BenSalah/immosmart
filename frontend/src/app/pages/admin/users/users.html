@@ -1,0 +1,66 @@
+<div class="users-page">
+
+  <div class="page-header">
+    <h1>Gestion des utilisateurs</h1>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="filters-group">
+    <div class="filters-row">
+      <span class="filter-label">Statut :</span>
+      <button [class.active]="filtreStatut === 'tous'" (click)="setFiltreStatut('tous')">Tous</button>
+      <button [class.active]="filtreStatut === 'en_attente'" (click)="setFiltreStatut('en_attente')">En attente</button>
+      <button [class.active]="filtreStatut === 'actif'" (click)="setFiltreStatut('actif')">Actifs</button>
+      <button [class.active]="filtreStatut === 'suspendu'" (click)="setFiltreStatut('suspendu')">Suspendus</button>
+
+      <span class="separator"></span>
+
+      <span class="filter-label">Rôle :</span>
+      <button [class.active]="filtreRole === 'tous'" (click)="setFiltreRole('tous')">Tous</button>
+      <button [class.active]="filtreRole === 'utilisateur'" (click)="setFiltreRole('utilisateur')">Utilisateurs</button>
+      <button [class.active]="filtreRole === 'annonceur'" (click)="setFiltreRole('annonceur')">Annonceurs</button>
+    </div>
+  </div>
+
+  <!-- TABLEAU -->
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Rôle</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of usersFiltres">
+        <td class="name">{{ u.nom }} {{ u.prenom }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.telephone }}</td>
+        <td>{{ u.role }}</td>
+        <td>
+          <span class="badge"
+            [ngClass]="{
+              'badge-green': u.statut === 'actif',
+              'badge-red': u.statut === 'suspendu',
+              'badge-amber': u.statut === 'en_attente',
+              'badge-gray': u.statut === 'refuse'
+            }">{{ u.statut }}</span>
+        </td>
+        <td>
+          <button class="btn-success" (click)="accepter(u.id)" *ngIf="u.statut === 'en_attente'">Accepter</button>
+          <button class="btn-danger" (click)="refuser(u.id)" *ngIf="u.statut === 'en_attente'">Refuser</button>
+          <button class="btn-warning" (click)="suspendre(u.id)" *ngIf="u.statut === 'actif'">Suspendre</button>
+          <button class="btn-success" (click)="activer(u.id)" *ngIf="u.statut === 'suspendu'">Activer</button>
+          <button class="btn-danger" (click)="supprimer(u.id)">Supprimer</button>
+        </td>
+      </tr>
+      <tr *ngIf="!usersFiltres.length">
+        <td colspan="6" class="empty">Aucun utilisateur</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

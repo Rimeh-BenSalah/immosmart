@@ -1,0 +1,66 @@
+<div class="profil-page">
+
+  <div class="page-header">
+    <h1>Mon profil</h1>
+  </div>
+
+  <div class="profil-container">
+    <form (ngSubmit)="enregistrer()">
+      
+      <div class="section-title">
+        <span>Informations personnelles</span>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Nom</label>
+          <input [(ngModel)]="profil.nom" name="nom" type="text" required placeholder="Votre nom">
+        </div>
+        <div class="field">
+          <label>Prénom</label>
+          <input [(ngModel)]="profil.prenom" name="prenom" type="text" required placeholder="Votre prénom">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Email</label>
+          <input [(ngModel)]="profil.email" name="email" type="email" required placeholder="votre@email.com">
+        </div>
+        <div class="field">
+          <label>Téléphone</label>
+          <input [(ngModel)]="profil.telephone" name="telephone" type="tel" placeholder="06 XX XX XX XX">
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top: 30px;">
+        <span>Sécurité</span>
+      </div>
+
+      <div class="field">
+        <label>Nouveau mot de passe <small>(Laissez vide pour ne pas changer)</small></label>
+        <input [(ngModel)]="mot_de_passe" name="mot_de_passe" type="password" placeholder="••••••••">
+      </div>
+
+      <!--BOUTONS -->
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" routerLink="/annonceur/mes-annonces">
+          Annuler
+        </button>
+        <button type="submit" class="btn-save">
+          Enregistrer
+        </button>
+      </div>
+
+      <p class="success-msg" *ngIf="message">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        {{ message }}
+      </p>
+
+    </form>
+  </div>
+
+</div>

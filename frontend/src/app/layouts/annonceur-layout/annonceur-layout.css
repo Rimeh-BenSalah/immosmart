@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== LAYOUT ========== */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #F1F5F9; /* Le fond gris clair de Brite */
+  font-family: 'Inter', sans-serif;
+}
+
+/* ========== NAVBAR SUPÉRIEURE ========== */
+.navbar {
+  /* Image d'immobilier + voile blanc pour faire ressortir la navbar */
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+    url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80') 
+    center/cover no-repeat;
+  
+  border-bottom: 4px solid #1E293B; /* Bordure noire massive */
+  box-shadow: 0px 4px 0px #1E293B; /* Ombre massive vers le bas */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+/* Conteneur pleine largeur */
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 32px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+/* ========== BLOC GAUCHE (Logo + Menu) ========== */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin-right: 30px;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  background: #4F46E5; /* Indigo */
+  color: white;
+  border-radius: 6px;
+  border: 3px solid #1E293B;
+  box-shadow: 3px 3px 0px #1E293B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text h2 {
+  color: #1E293B;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.role {
+  color: #4F46E5;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+}
+
+/* ========== MENU GAUCHE ========== */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  color: #1E293B;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  border: 3px solid transparent;
+}
+
+.nav-links a:hover {
+  background: #FFFFFF;
+  border: 3px solid #1E293B;
+  box-shadow: 3px 3px 0px #1E293B;
+  transform: translate(-2px, -2px);
+}
+
+.nav-links a.active {
+  background: #4F46E5; /* Indigo */
+  color: #FFFFFF;
+  border: 3px solid #1E293B;
+  box-shadow: 3px 3px 0px #1E293B;
+  transform: translate(-2px, -2px);
+}
+
+/* ========== BLOC DROITE (Profil + Déconnexion) ========== */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1E293B;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 0 16px;
+  height: 44px;
+  border-radius: 6px;
+  border: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.profile-btn:hover {
+  background: #FFFFFF;
+  border: 3px solid #1E293B;
+  box-shadow: 3px 3px 0px #1E293B;
+  transform: translate(-2px, -2px);
+}
+
+/* ✅ ONGLET PROFIL ACTIF */
+.profile-btn.active {
+  background: #4F46E5;
+  color: #FFFFFF;
+  border: 3px solid #1E293B;
+  box-shadow: 3px 3px 0px #1E293B;
+  transform: translate(-2px, -2px);
+}
+
+.separator {
+  width: 3px;
+  height: 30px;
+  background-color: #1E293B;
+  margin: 0 8px;
+  border-radius: 2px;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  color: #EF4444;
+  border: 3px solid #1E293B;
+  padding: 0 18px;
+  height: 44px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 13px;
+  box-shadow: 3px 3px 0px #1E293B;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #FEE2E2;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px #1E293B;
+}
+
+.logout-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* ========== CONTENU ========== */
+.content {
+  flex: 1;
+  padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  .navbar-inner {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 20px;
+  }
+  .nav-left {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  .logo {
+    margin-right: 0;
+  }
+  .nav-links {
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    height: 40px;
+    padding: 0 16px;
+    font-size: 13px;
+  }
+}

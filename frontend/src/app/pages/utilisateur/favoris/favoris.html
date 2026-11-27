@@ -1,0 +1,76 @@
+<!-- Conteneur principal de la page des favoris -->
+<div class="favoris-page">
+
+  <!-- BOUTON RETOUR -->
+  <div class="top-actions">
+    <!-- routerLink permet de revenir à la page d'accueil -->
+    <a routerLink="/accueil" class="btn-back">Accueil</a>
+  </div>
+
+  <!-- En-tête de la page -->
+  <div class="page-header">
+    <h1>Mes Favoris</h1>
+    <p class="subtitle">Les biens que vous avez sauvegardés.</p>
+  </div>
+
+  <!-- Afficher la grille uniquement s'il existe au moins un favori -->
+  <div class="annonces-grid" *ngIf="favoris.length > 0">
+
+    <!-- Répéter cette carte pour chaque annonce dans le tableau favoris -->
+    <div class="card" *ngFor="let a of favoris">
+
+      <div class="card-image">
+
+        <!-- Afficher la photo de l'annonce.
+             Si photo_url existe :
+             - utiliser directement l'URL si elle commence par http ;
+             - sinon, ajouter le chemin du dossier uploads.
+             Si aucune photo n'existe, afficher une image par défaut. -->
+        <img [src]="a.photo_url ? (a.photo_url.startsWith('http') ? a.photo_url : 'http://localhost:8081/uploads/' + a.photo_url) : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80'" alt="Bien immobilier">
+
+        <!-- Afficher un badge selon le type de transaction -->
+        <span class="badge" [ngClass]="(a.transaction_nom | lowercase) === 'vente' ? 'badge-vente' : 'badge-location'">
+
+          <!-- Afficher « À vendre » si la transaction est une vente,
+               sinon afficher « À louer » -->
+          {{ (a.transaction_nom | lowercase) === 'vente' ? 'À vendre' : 'À louer' }}
+        </span>
+      </div>
+
+      <!-- Contenu de la carte -->
+      <div class="card-content">
+
+        <!-- Afficher le nom de la région -->
+        <p class="location">{{ a.region_nom }}</p>
+
+        <!-- Afficher le titre de l'annonce -->
+        <h3>{{ a.titre }}</h3>
+
+        <div class="card-middle">
+
+          <!-- Afficher le prix suivi de DT -->
+          <span class="price">{{ a.prix }} DT</span>
+
+          <!-- Afficher la surface suivie de m² -->
+          <span class="surface">{{ a.surface }} m²</span>
+        </div>
+
+        <!-- Partie contenant les boutons Détails et Retirer -->
+        <div class="card-bottom" style="display: flex; gap: 10px;">
+
+          <!-- Naviguer vers la page des détails de l'annonce
+               en transmettant son ID dans l'URL -->
+          <a [routerLink]="['/annonce', a.id]" class="btn-details" style="flex: 1;">Détails</a>
+
+          <!-- Appeler la fonction retirer() avec l'ID de l'annonce
+               lorsqu'on clique sur ce bouton -->
+          <button class="btn-remove" (click)="retirer(a.id)">Retirer</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Afficher ce message si le tableau favoris est vide -->
+  <p *ngIf="favoris.length === 0" class="empty">Vous n'avez pas encore de favoris.</p>
+</div>

@@ -1,0 +1,135 @@
+<div class="accueil-page">
+  
+  <!-- NAVBAR DYNAMIQUE PRO -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="logo">IMMO<span>SMART</span>.</div>
+      
+      <nav class="nav-links">
+        <a routerLink="/accueil" routerLinkActive="active">Accueil</a>
+
+        <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+          <div class="user-dropdown">
+            <button class="dropdown-btn" (click)="toggleMenu()">
+              <div class="avatar">{{ userInitial }}</div>
+              <span class="user-name">{{ userPrenom }}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="dropdown-menu" *ngIf="isMenuOpen">
+              <a routerLink="/utilisateur/profil" (click)="isMenuOpen = false">Mon Profil</a>
+              <a routerLink="/utilisateur/favoris" (click)="isMenuOpen = false">Mes Favoris</a>
+              <a routerLink="/utilisateur/demandes" (click)="isMenuOpen = false">Mes Demandes</a>
+              <div class="divider"></div>
+              <button (click)="deconnexion()" class="logout-link">Déconnexion</button>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #notLoggedIn>
+          <a routerLink="/login" class="btn-login-outline">Se connecter</a>
+          <a routerLink="/register" class="btn-register-fill">Inscription</a>
+        </ng-template>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">L'immobilier de prestige</span>
+      <h1>L'excellence immobilière,<br><em>là où vous vous sentez chez vous</em></h1>
+      <p>Depuis 15 ans, nous concrétisons vos projets immobiliers en Tunisie avec transparence et expertise.</p>
+    </div>
+  </section>
+
+  <!-- BARRE DE RECHERCHE -->
+  <section class="search-section">
+    <div class="search-container">
+      <div class="search-tabs">
+        <!-- LE BOUTON TOUT EN PREMIER -->
+        <button [class.active]="type_recherche === 'tous'" (click)="setTypeRecherche('tous')">Tout</button>
+        <button [class.active]="type_recherche === 'vente'" (click)="setTypeRecherche('vente')">Acheter</button>
+        <button [class.active]="type_recherche === 'location'" (click)="setTypeRecherche('location')">Louer</button>
+      </div>
+      
+      <div class="search-fields">
+        <div class="field"><label>Mot-clé</label><input [(ngModel)]="search" placeholder="Villa, Piscine..."></div>
+        <div class="field"><label>Type de bien</label><select [(ngModel)]="categorie_id"><option value="">Tous les types</option><option *ngFor="let c of categories" [value]="c.id">{{ c.nom }}</option></select></div>
+        <div class="field"><label>Région</label><select [(ngModel)]="region"><option value="">Toutes les régions</option><option *ngFor="let r of regions" [value]="r.id">{{ r.nom }}</option></select></div>
+        <div class="field"><label>Prix max (DT)</label><input type="number" [(ngModel)]="prix_max" placeholder="500 000"></div>
+        <div class="field"><label>Surface min (m²)</label><input type="number" [(ngModel)]="surface_min" placeholder="100"></div>
+        <div class="field"><label>Pièces</label><input type="number" [(ngModel)]="pieces_min" placeholder="2"></div>
+      </div>
+
+      <div class="search-action">
+        <button class="btn-search" (click)="explorerBiens()">Explorer les biens</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION ANNONCES -->
+  <section id="annonces" class="annonces-section">
+    <div class="annonces-header">
+      <h2>Notre Collection Exclusive</h2>
+      <a routerLink="/annonces" class="btn-voir-tout">Voir toutes</a>
+    </div>
+
+    <div class="annonces-grid">
+      <div class="card" *ngFor="let a of annonces | slice:0:3">
+        <div class="card-image">
+          <img [src]="a.photo_url ? (a.photo_url.startsWith('http') ? a.photo_url : 'http://localhost:8081/uploads/' + a.photo_url) : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80'" alt="Bien immobilier">
+          <span class="badge" [ngClass]="(a.transaction_nom | lowercase) === 'vente' ? 'badge-vente' : 'badge-location'">
+            {{ (a.transaction_nom | lowercase) === 'vente' ? 'À vendre' : 'À louer' }}
+          </span>
+        </div>
+
+        <div class="card-content">
+          <p class="location">{{ a.region_nom }}</p>
+          <h3>{{ a.titre }}</h3>
+          <div class="card-middle">
+            <span class="price">{{ a.prix }} DT</span>
+            <span class="surface">{{ a.surface }} m²</span>
+          </div>
+          <div class="card-bottom">
+            <a [routerLink]="['/annonce', a.id]" class="btn-details">Découvrir la propriété</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p *ngIf="annonces.length === 0" class="empty">Aucune propriété ne correspond à vos critères.</p>
+  </section>
+
+  <!-- SECTION SERVICES -->
+  <section class="services-section">
+    <div class="section-badge">Notre expertise</div>
+    <h2>Des services <em>sur mesure</em></h2>
+    <p class="subtitle">Accompagnement personnalisé à chaque étape de votre projet immobilier</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="icon-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Achat & Vente</h3><p>Accédez aux meilleures opportunités du marché tunisien.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+        <h3>Location</h3><p>Trouvez le bien qui vous correspond, longue ou courte durée.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="16" y1="18" x2="16.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="8" y1="18" x2="8.01" y2="18"/></svg></div>
+        <h3>Estimation gratuite</h3><p>Obtenez une évaluation précise de votre bien en 24h.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Accompagnement</h3><p>Sécurisez votre transaction avec nos avocats partenaires.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">IMMOSMART.</div>
+      <p class="footer-text">L'immobilier de demain, disponible aujourd'hui.</p>
+      <p class="footer-copy">© 2026 ImmoSmart - Tous droits réservés</p>
+    </div>
+  </footer>
+</div>

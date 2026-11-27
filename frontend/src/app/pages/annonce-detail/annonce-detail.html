@@ -1,0 +1,133 @@
+<div class="detail-page" *ngIf="annonce">
+  
+  <div class="container">
+    <a routerLink="/accueil" class="back-btn">Retour</a>
+  </div>
+
+  <div class="container main-content">
+    
+    <!-- EN-TÊTE -->
+    <div class="header-annonce">
+      <div class="header-left">
+        <span class="badge" [ngClass]="isVente() ? 'badge-vente' : 'badge-location'">
+          {{ isVente() ? 'À vendre' : 'À louer' }}
+        </span>
+        <h1>{{ annonce.titre }}</h1>
+        <p class="location">{{ annonce.region_nom }}</p>
+      </div>
+      <div class="header-right">
+        <span class="price">{{ annonce.prix }} DT</span>
+        
+        <!-- BOUTON FAVORI -->
+        <button *ngIf="isLoggedIn" class="btn-favori" (click)="toggleFavori()" title="Ajouter/Retirer des favoris">
+          <svg *ngIf="!isFavori" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <svg *ngIf="isFavori" width="24" height="24" viewBox="0 0 24 24" fill="#EF4444" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- TOAST FAVORI -->
+    <div *ngIf="messageFavori" class="favori-toast" [ngClass]="typeMessageFavori">
+      {{ messageFavori }}
+    </div>
+
+    <!-- CARROUSEL PHOTOS -->
+    <div class="carrousel-container" *ngIf="annonce.photos && annonce.photos.length > 0">
+      
+      <!-- Bouton Précédent -->
+      <button class="nav-btn prev" (click)="prevImage()" *ngIf="annonce.photos.length > 1">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <!-- Image Principale -->
+      <div class="carrousel-image-wrapper">
+        <img [src]="annonce.photos[currentImageIndex].url.startsWith('http') ? annonce.photos[currentImageIndex].url : 'http://localhost:8081/uploads/' + annonce.photos[currentImageIndex].url" alt="Photo du bien">
+        
+        <!-- Compteur (ex: 1 / 3) -->
+        <div class="image-counter">
+          {{ currentImageIndex + 1 }} / {{ annonce.photos.length }}
+        </div>
+      </div>
+
+      <!-- Bouton Suivant -->
+      <button class="nav-btn next" (click)="nextImage()" *ngIf="annonce.photos.length > 1">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+
+    </div>
+    
+    <!-- Si pas de photos -->
+    <div class="galerie-vide" *ngIf="!annonce.photos || annonce.photos.length === 0">
+      <p>Aucune photo disponible.</p>
+    </div>
+
+    <!-- GRILLE DE CONTENU -->
+    <div class="contenu-grid">
+      
+      <!-- COLONNE GAUCHE -->
+      <div class="colonne-gauche">
+        <div class="section-card">
+          <h2>Caractéristiques</h2>
+          <div class="grille-caracteristiques">
+            <div class="carac-item">
+              <span class="carac-label">Surface</span>
+              <span class="carac-valeur">{{ annonce.surface }} m²</span>
+            </div>
+            <div class="carac-item">
+              <span class="carac-label">Pièces</span>
+              <span class="carac-valeur">{{ annonce.nombre_pieces }}</span>
+            </div>
+            <div class="carac-item">
+              <span class="carac-label">État</span>
+              <span class="carac-valeur">{{ annonce.etat || 'Non renseigné' }}</span>
+            </div>
+            <div class="carac-item">
+              <span class="carac-label">Catégorie</span>
+              <span class="carac-valeur">{{ annonce.categorie_nom }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2>Description</h2>
+          <p class="description-texte">{{ annonce.description }}</p>
+        </div>
+      </div>
+
+      <!-- COLONNE DROITE -->
+      <div class="colonne-droite">
+        
+        <!-- SI CONNECTÉ -->
+        <div class="section-card contact-card" *ngIf="isLoggedIn; else loginBox">
+          <h2>Contacter le propriétaire</h2>
+          <p class="contact-text">Envoyez une demande d'information pour ce bien.</p>
+          
+          <!--AJOUT DES COORDONNÉES DU PROPRIÉTAIRE -->
+          <div class="owner-info">
+            <p><strong>Propriétaire :</strong> {{ annonce.user_prenom }} {{ annonce.user_nom }}</p>
+            <p><strong>Téléphone :</strong> {{ annonce.user_telephone }}</p>
+          </div>
+          
+          <textarea [(ngModel)]="message" placeholder="Bonjour, je suis intéressé par ce bien..." rows="4"></textarea>
+          
+          <p class="error-msg" *ngIf="erreurMessage">{{ erreurMessage }}</p>
+          
+          <button class="btn-brutalist" (click)="envoyerDemande()">Envoyer la demande</button>
+          
+          <p class="success-msg" *ngIf="demandeEnvoyee">Votre demande a été envoyée !</p>
+        </div>
+
+        <!-- SI NON CONNECTÉ -->
+        <ng-template #loginBox>
+          <div class="section-card login-card">
+            <h2>Intéressé par ce bien ?</h2>
+            <p>Connectez-vous à votre compte ImmoSmart pour contacter le propriétaire.</p>
+            <a routerLink="/login" class="btn-brutalist">Se connecter</a>
+            <p class="register-link">Pas encore de compte ? <a routerLink="/register">S'inscrire</a></p>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>

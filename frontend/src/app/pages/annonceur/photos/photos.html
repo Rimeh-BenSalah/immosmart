@@ -1,0 +1,57 @@
+<!-- Conteneur principal de la page des photos -->
+<div class="photos-page">
+
+  <!-- En-tête de la page -->
+  <div class="page-header">
+    <div>
+      <!-- Lien pour retourner à la liste des annonces -->
+      <a routerLink="/annonceur/mes-annonces" class="back">
+        Retour aux annonces
+      </a>
+
+      <!-- Titre de la page -->
+      <h1>Photos de l'annonce</h1>
+    </div>
+
+    <!-- Bouton permettant d'ajouter une photo -->
+    <label class="upload-btn">
+      Ajouter une photo
+
+      <!--
+        input type="file" : permet de choisir un fichier.
+        accept="image/*" : accepte uniquement les images.
+        (change) : appelle onFileSelected() quand un fichier est choisi.
+        hidden : cache le champ de fichier, le label sert de bouton visible.
+      -->
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        hidden
+      >
+    </label>
+  </div>
+
+  <!-- Grille qui affiche toutes les photos -->
+  <div class="photos-grid">
+
+    <!--
+      *ngFor : répète cette carte pour chaque photo du tableau photos.
+      p représente la photo en cours.
+    -->
+    <div class="photo-card" *ngFor="let p of photos">
+
+      <!-- Affiche l'image grâce à son adresse stockée dans p.url -->
+      <img [src]="p.url" alt="Photo">
+
+      <!-- Bouton qui supprime la photo correspondant à p.id -->
+      <button class="delete-btn" (click)="supprimer(p.id)">×</button>
+    </div>
+  </div>
+
+  <!-- Affiche ce message uniquement si aucune photo n'est disponible -->
+  <p *ngIf="!photos.length" class="empty">
+    Aucune photo pour le moment.
+  </p>
+
+</div>

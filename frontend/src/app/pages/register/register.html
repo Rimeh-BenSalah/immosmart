@@ -1,0 +1,52 @@
+<div class="auth-page">
+  
+  <!-- BOÎTE D'INSCRIPTION -->
+  <div class="box-brutal">
+    
+    <div class="breadcrumb">
+      <a routerLink="/accueil" class="breadcrumb-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        Accueil
+      </a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-current">Inscription</span>
+    </div>
+
+    <h1>Inscription</h1>
+    
+    <div class="input-row">
+      <div class="input-group">
+        <input [(ngModel)]="nom" placeholder="Nom">
+      </div>
+      <div class="input-group">
+        <input [(ngModel)]="prenom" placeholder="Prénom">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input [(ngModel)]="email" placeholder="Email" type="email">
+    </div>
+    <div class="input-group">
+      <input [(ngModel)]="telephone" placeholder="Téléphone">
+    </div>
+    <div class="input-group">
+      <input [(ngModel)]="mot_de_passe" placeholder="Mot de passe" type="password">
+    </div>
+    
+    <div class="input-group">
+      <select [(ngModel)]="role">
+        <option value="utilisateur">Utilisateur</option>
+        <option value="annonceur">Propriétaire / Agent immobilier</option>
+      </select>
+    </div>
+    
+    <button class="btn-brutal" (click)="sInscrire()">S'inscrire</button>
+    
+    <p class="error" *ngIf="erreur">{{ erreur }}</p>
+    
+    <p class="link">Vous avez déjà un compte ? <a routerLink="/login">Connectez-vous</a></p>
+  </div>
+</div>

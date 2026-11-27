@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== CONTENEUR ========== */
+.regions-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 30px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ========== TITRE ========== */
+h1 {
+  font-size: 28px;
+  color: #1E293B;
+  margin: 0 0 24px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* ========== FORMULAIRE (Style Brutalist) ========== */
+.form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  border: 3px solid #1E293B; /* Bordure noire */
+  box-shadow: 5px 5px 0px #1E293B; /* Ombre massive */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 3px solid #1E293B; /* Bordure noire */
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #1E293B;
+  background: #F8FAFC;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+.form input:focus {
+  outline: none;
+  background: #FFFFFF;
+  box-shadow: 4px 4px 0px #1E293B; /* Ombre au focus */
+}
+
+.form input::placeholder {
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.form button {
+  padding: 14px 24px;
+  background: #4F46E5; /* Indigo */
+  color: white;
+  border: 3px solid #1E293B;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 4px 4px 0px #1E293B;
+  transition: all 0.2s ease;
+}
+
+.form button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+.form button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* ========== TABLEAU PLEINE LARGEUR ========== */
+table {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid #1E293B; /* Bordure massive */
+  border-collapse: collapse;
+  box-shadow: 6px 6px 0px #1E293B; /* Ombre massive */
+}
+
+th {
+  background: #FFFFFF;
+  color: #1E293B;
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 3px solid #1E293B;
+}
+
+td {
+  padding: 16px 20px;
+  border-bottom: 2px dashed #CBD5E1; /* Lignes pointillées */
+  color: #334155;
+  font-size: 14px;
+  vertical-align: middle;
+  font-weight: 500;
+}
+
+td.name {
+  font-weight: 800;
+  color: #4F46E5; /* Le bleu indigo */
+}
+
+td:last-child { text-align: center; }
+th:last-child { text-align: center; }
+
+tbody tr:hover td {
+  background: #F8FAFC;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========== BOUTONS D'ACTION (Style Brutalist) ========== */
+button.action-btn {
+  padding: 8px 16px;
+  border: 3px solid #1E293B;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+  color: white;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 3px 3px 0px #1E293B;
+  transition: all 0.2s ease;
+}
+
+button.action-btn:last-child {
+  margin-right: 0;
+}
+
+button.action-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #1E293B;
+}
+
+button.action-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* Couleurs des actions */
+.btn-warning { background: #F59E0B; } /* Orange */
+.btn-danger { background: #EF4444; }  /* Rouge */
+
+/* ========== VIDE ========== */
+.empty {
+  text-align: center;
+  color: #64748B;
+  padding: 40px;
+  font-weight: 600;
+  font-style: italic;
+  background: #F8FAFC;
+  border: 3px dashed #CBD5E1;
+  border-radius: 8px;
+}

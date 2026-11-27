@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== PAGE GLOBALE (AVEC L'IMAGE DE FOND) ========== */
+.auth-page {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  
+  /* ✅ L'IMAGE DE FOND AVEC LE VOILE SOMBRE */
+  background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)), 
+              url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat fixed;
+}
+
+/* ========== BOÎTE PRINCIPALE (Style Brite) ========== */
+.box-brutal {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 460px;
+  padding: 30px 40px 50px 40px;
+  border: 4px solid #1E293B; /* Bordure noire massive */
+  box-shadow: 10px 10px 0px #1E293B; /* Ombre massive */
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+}
+
+/* ========== FIL D'ARIANE (À l'intérieur du cadre) ========== */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px dashed #CBD5E1; /* Ligne pointillée de séparation */
+}
+
+.breadcrumb-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #4F46E5; /* Le violet/bleu indigo */
+  font-weight: 700;
+  transition: 0.2s;
+}
+
+.breadcrumb-link:hover {
+  color: #3730A3;
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #94A3B8;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.breadcrumb-current {
+  color: #1E293B;
+  font-weight: 800;
+}
+
+/* ========== TITRE ========== */
+.box-brutal h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  color: #1E293B;
+  margin: 0 0 30px 0;
+  font-weight: 800;
+}
+
+/* ========== CHAMPS DE SAISIE ========== */
+.input-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-row {
+  display: flex;
+  gap: 15px;
+}
+
+.input-group input, 
+.input-group select {
+  width: 100%;
+  padding: 16px;
+  background: #FFFFFF;
+  border: 3px solid #1E293B; /* Bordure noire */
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 15px;
+  color: #1E293B;
+  outline: none;
+  transition: 0.2s;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+  box-shadow: 4px 4px 0px #1E293B; /* Ombre au focus */
+}
+
+.input-group input::placeholder {
+  color: #94A3B8;
+}
+
+/* ========== BOUTON PRINCIPAL ========== */
+.btn-brutal {
+  width: 100%;
+  background: #4F46E5; /* Bleu indigo */
+  color: #FFFFFF;
+  padding: 16px;
+  border: 3px solid #1E293B;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  box-shadow: 5px 5px 0px #1E293B;
+}
+
+.btn-brutal:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #1E293B;
+}
+
+.btn-brutal:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #1E293B;
+}
+
+/* ========== ERREURS ET LIENS ========== */
+.error {
+  color: #EF4444;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+  background: #FEE2E2;
+  padding: 10px;
+  border: 2px solid #1E293B;
+  border-radius: 4px;
+}
+
+.link {
+  color: #1E293B;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.link a {
+  color: #4F46E5;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.link a:hover {
+  color: #3730A3;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .box-brutal {
+    padding: 25px 20px 40px 20px;
+    box-shadow: 6px 6px 0px #1E293B;
+  }
+  .input-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

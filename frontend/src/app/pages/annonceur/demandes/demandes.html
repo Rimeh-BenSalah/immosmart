@@ -1,0 +1,80 @@
+<!-- Conteneur principal de la page des demandes -->
+<div class="demandes-page">
+
+  <!-- En-tête de la page -->
+  <div class="page-header">
+    <h1>Demandes reçues</h1>
+    <p class="subtitle">Gérez les demandes d'information de vos clients.</p>
+  </div>
+
+  <!-- Afficher la liste uniquement s'il existe au moins une demande -->
+  <div class="demandes-list" *ngIf="demandes.length > 0">
+
+    <!-- *ngFor répète cette carte pour chaque demande -->
+    <!-- d représente la demande actuelle -->
+    <div class="demande-card" *ngFor="let d of demandes">
+
+      <!-- En-tête cliquable : permet d'ouvrir ou de fermer la carte -->
+      <div class="demande-header" (click)="toggleDemande(d.id)">
+
+        <!-- Afficher le titre de l'annonce concernée -->
+        <h3>{{ d.annonce_titre }}</h3>
+
+        <!-- Afficher le statut de la demande -->
+        <!-- ngClass applique une classe CSS selon la condition -->
+        <span class="status" [ngClass]="d.message.includes('--- Réponse ---') ? 'status-green' : 'status-amber'">
+
+          <!-- Si le message contient une réponse, afficher Répondu -->
+          <!-- Sinon, afficher En attente -->
+          {{ d.message.includes('--- Réponse ---') ? 'Répondu' : 'En attente' }}
+
+          <!-- Afficher ▲ si la carte est ouverte, sinon ▼ -->
+          <span class="arrow">{{ demandeOuverteId === d.id ? '▲' : '▼' }}</span>
+        </span>
+      </div>
+
+      <!-- Afficher le contenu uniquement si cette demande est ouverte -->
+      <div *ngIf="demandeOuverteId === d.id" class="demande-content">
+
+        <!-- Informations de la personne qui a envoyé la demande -->
+        <div class="expediteur-info">
+
+          <!-- Afficher le nom et le prénom de l'expéditeur -->
+          <p><strong>De :</strong> {{ d.expediteur_nom }} {{ d.expediteur_prenom }}</p>
+
+          <!-- Afficher son téléphone ou Non renseigné s'il est vide -->
+          <p><strong>Téléphone :</strong> {{ d.expediteur_telephone || 'Non renseigné' }}</p>
+        </div>
+
+        <!-- Afficher le message envoyé par le client -->
+        <div class="message-box">
+          <p class="message-label"><strong>Message :</strong></p>
+
+          <!-- white-space: pre-line conserve les retours à la ligne du message -->
+          <p style="white-space: pre-line;">{{ d.message }}</p>
+        </div>
+
+        <!-- Zone permettant à l'annonceur de répondre -->
+        <div class="reponse-section">
+
+          <!--
+            textarea : zone de saisie de la réponse.
+            [(ngModel)] : lie le texte saisi à d.reponse.
+            placeholder : texte indicatif affiché avant la saisie.
+            stopPropagation() : empêche le clic de remonter vers l'en-tête.
+          -->
+          <textarea [(ngModel)]="d.reponse" placeholder="Écrivez votre réponse ici..." (click)="$event.stopPropagation()"></textarea>
+
+          <!-- Appeler la fonction repondre() au clic sur le bouton -->
+          <!-- stopPropagation() empêche aussi le clic de remonter vers l'en-tête -->
+          <button class="btn-brutalist" (click)="repondre(d); $event.stopPropagation();">Répondre</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Afficher ce message si aucune demande n'est disponible -->
+  <p *ngIf="demandes.length === 0" class="empty">Aucune demande reçue pour le moment.</p>
+</div>

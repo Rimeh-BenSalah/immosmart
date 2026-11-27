@@ -1,0 +1,33 @@
+<div class="categories-page">
+
+  <h1>Gestion des catégories</h1>
+
+  <!-- Formulaire ajout -->
+  <div class="form">
+    <input [(ngModel)]="nouveauNom" placeholder="Nom de la catégorie">
+    <button (click)="ajouter()">Ajouter</button>
+  </div>
+
+  <!-- Tableau -->
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of categories">
+        <td class="name">{{ c.nom }}</td>
+        <td>
+          <button class="action-btn btn-warning" (click)="modifier(c)">Modifier</button>
+          <button class="action-btn btn-danger" (click)="supprimer(c.id)">Supprimer</button>
+        </td>
+      </tr>
+      <tr *ngIf="!categories.length">
+        <td colspan="2" class="empty">Aucune catégorie</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

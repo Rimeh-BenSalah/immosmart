@@ -1,0 +1,123 @@
+<div class="annonceur-page">
+
+  <!-- LISTE -->
+  <div *ngIf="!showForm">
+    <div class="page-header">
+      <h1>Mes annonces</h1>
+      <button class="btn-add" (click)="ouvrirAjout()">Ajouter une annonce</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Prix</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of annonces">
+          <td class="name">{{ a.titre }}</td>
+          <td>{{ a.prix }} DT</td>
+          <td>
+            <span class="badge"
+              [ngClass]="{
+                'badge-green': a.statut === 'validee',
+                'badge-amber': a.statut === 'en_attente',
+                'badge-red': a.statut === 'refusee',
+                'badge-gray': a.statut === 'desactivee'
+              }">{{ a.statut }}</span>
+          </td>
+          <td>
+            <a [routerLink]="['/annonceur/photos', a.id]" class="btn-photos action-btn">Photos</a>
+            <button class="action-btn btn-warning" (click)="ouvrirModif(a)">Modifier</button>
+            <button class="action-btn btn-danger" (click)="supprimer(a.id)">Supprimer</button>
+          </td>
+        </tr>
+        <tr *ngIf="!annonces.length">
+          <td colspan="4" class="empty">Aucune annonce</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FORMULAIRE  -->
+  <div *ngIf="showForm" class="form-container">
+    <div class="form-header">
+      <h1>{{ editMode ? 'Modifier l\'annonce' : 'Nouvelle annonce' }}</h1>
+    </div>
+
+    <form (ngSubmit)="enregistrer()">
+      
+      <div class="row">
+        <div class="field">
+          <label>Titre *</label>
+          <input [(ngModel)]="form.titre" name="titre" required placeholder="Ex: Belle villa avec piscine">
+        </div>
+        <div class="field">
+          <label>État du bien</label>
+          <input [(ngModel)]="form.etat" name="etat" placeholder="Ex: Neuf, Bon état...">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        <textarea [(ngModel)]="form.description" name="description" placeholder="Décrivez votre bien..."></textarea>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Prix (DT) *</label>
+          <input [(ngModel)]="form.prix" name="prix" type="number" required>
+        </div>
+        <div class="field">
+          <label>Surface (m²)</label>
+          <input [(ngModel)]="form.surface" name="surface" type="number">
+        </div>
+        <div class="field">
+          <label>Nombre de pièces</label>
+          <input [(ngModel)]="form.nombre_pieces" name="nombre_pieces" type="number">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Type de transaction *</label>
+          <select [(ngModel)]="form.type_transaction_id" name="type_transaction_id" required>
+            <option value="">-- Choisir --</option>
+            <option *ngFor="let t of typesTransaction" [value]="t.id">{{ t.nom }}</option>
+          </select>
+        </div>
+        
+        <div class="field">
+          <label>Catégorie *</label>
+          <select [(ngModel)]="form.categorie_id" name="categorie_id" required>
+            <option value="">-- Choisir --</option>
+            <option *ngFor="let c of categories" [value]="c.id">{{ c.nom }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Région *</label>
+          <select [(ngModel)]="form.region_id" name="region_id" required>
+            <option value="">-- Choisir --</option>
+            <option *ngFor="let r of regions" [value]="r.id">{{ r.nom }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="fermerForm()">Annuler</button>
+        
+        <!--  BOUTON ENREGISTRER : Bloqué si les champs obligatoires (*) sont vides -->
+        <button type="submit" class="btn-save" [disabled]="!isFormValid()">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

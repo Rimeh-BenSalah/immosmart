@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== PAGE ========== */
+.annonceur-page { 
+  width: 100%; 
+  max-width: 1000px; 
+  margin: 0 auto; 
+  padding-bottom: 20px; 
+  font-family: 'Inter', sans-serif;
+  color: #1E293B;
+}
+
+/* ========== EN-TÊTE ========== */
+.page-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 24px; 
+}
+
+h1 { 
+  font-size: 28px; 
+  color: #1E293B; 
+  margin: 0; 
+  font-weight: 800; 
+  letter-spacing: -0.5px;
+}
+
+/* Bouton Ajouter */
+.btn-add {
+  padding: 12px 24px; 
+  background: #4F46E5; /* Indigo */
+  color: white; 
+  border: 3px solid #1E293B;
+  border-radius: 6px; 
+  font-weight: 800; 
+  font-size: 14px; 
+  cursor: pointer; 
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0px #1E293B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.btn-add:hover { 
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+}
+.btn-add:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* ========== TABLEAU ========== */
+table { 
+  width: 100%; 
+  background: #FFF; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  border: 3px solid #1E293B; 
+  border-collapse: collapse; 
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+th { 
+  background: #FFF; 
+  color: #1E293B; 
+  padding: 16px; 
+  text-align: left; 
+  font-weight: 800; 
+  font-size: 12px; 
+  text-transform: uppercase; 
+  border-bottom: 3px solid #1E293B;
+}
+
+td { 
+  padding: 16px; 
+  border-bottom: 2px dashed #CBD5E1; 
+  color: #334155; 
+  font-size: 14px; 
+  font-weight: 500;
+}
+
+td.name { 
+  font-weight: 800; 
+  color: #4F46E5; 
+}
+
+tbody tr:hover td { background: #F8FAFC; }
+tbody tr:last-child td { border-bottom: none; }
+
+/* ========== BADGES ========== */
+.badge { 
+  padding: 6px 14px; 
+  border-radius: 4px; 
+  font-size: 12px; 
+  font-weight: 800; 
+  text-transform: capitalize; 
+  border: 2px solid #1E293B;
+  box-shadow: 2px 2px 0px #1E293B;
+  display: inline-block;
+}
+
+.badge-green { background: #10B981; color: #FFFFFF; }
+.badge-amber { background: #F59E0B; color: #FFFFFF; }
+.badge-red { background: #EF4444; color: #FFFFFF; }
+.badge-gray { background: #E2E8F0; color: #1E293B; }
+
+/* ========== BOUTONS D'ACTION ========== */
+button.action-btn, .btn-photos {
+  padding: 8px 16px; 
+  border: 3px solid #1E293B; 
+  border-radius: 6px; 
+  cursor: pointer;
+  margin-right: 8px; 
+  color: white; 
+  font-weight: 800; 
+  font-size: 12px;
+  text-decoration: none; 
+  display: inline-block; 
+  transition: all 0.2s;
+  box-shadow: 3px 3px 0px #1E293B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button.action-btn:hover, .btn-photos:hover { 
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #1E293B;
+}
+
+button.action-btn:active, .btn-photos:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+.btn-photos { background: #4F46E5; } /* Indigo */
+.btn-warning { background: #F59E0B; } /* Orange */
+.btn-danger { background: #EF4444; }  /* Rouge */
+
+.btn-save { 
+  background: #4F46E5; 
+  padding: 14px 28px; 
+  font-size: 14px; 
+  border-radius: 6px; 
+  border: 3px solid #1E293B;
+  box-shadow: 4px 4px 0px #1E293B;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.btn-save:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+.btn-cancel { 
+  background: #E2E8F0; 
+  color: #1E293B; 
+  padding: 14px 28px; 
+  font-size: 14px; 
+  border-radius: 6px; 
+  border: 3px solid #1E293B;
+  box-shadow: 4px 4px 0px #1E293B;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.btn-cancel:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+  background: #CBD5E1;
+}
+
+/* ========== FORMULAIRE ========== */
+.form-container { 
+  background: #FFF; 
+  border: 3px solid #1E293B; 
+  border-radius: 8px; 
+  padding: 30px; 
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+.form-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 24px; 
+  padding-bottom: 16px; 
+  border-bottom: 3px solid #1E293B; 
+}
+
+.form-header h1 { 
+  color: #1E293B; 
+  font-size: 22px; 
+  margin: 0; 
+  font-weight: 800;
+}
+
+.row { display: flex; gap: 20px; }
+
+.field { 
+  flex: 1; 
+  margin-bottom: 20px; 
+}
+
+.field label { 
+  display: block; 
+  font-size: 12px; 
+  color: #1E293B; 
+  font-weight: 800; 
+  text-transform: uppercase; 
+  margin-bottom: 8px; 
+}
+
+.field input, .field textarea, .field select {
+  width: 100%; 
+  padding: 12px 16px; 
+  border: 3px solid #1E293B; 
+  border-radius: 6px;
+  font-size: 14px; 
+  font-family: inherit; 
+  box-sizing: border-box; 
+  transition: all 0.2s;
+  background: #F8FAFC;
+  font-weight: 600;
+}
+
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none; 
+  background: #FFFFFF;
+  box-shadow: 4px 4px 0px #1E293B;
+}
+
+.field textarea { 
+  min-height: 80px; 
+  max-height: 150px;
+  resize: vertical; 
+}
+
+.form-actions { 
+  display: flex; 
+  justify-content: flex-end; 
+  gap: 16px; 
+  margin-top: 24px; 
+  border-top: 3px dashed #CBD5E1; 
+  padding-top: 24px; 
+}
+
+/* ========== VIDE ========== */
+.empty { 
+  text-align: center; 
+  color: #64748B; 
+  padding: 40px; 
+  font-weight: 600; 
+  font-style: italic; 
+  background: #F8FAFC;
+  border: 3px dashed #CBD5E1;
+  border-radius: 8px;
+}

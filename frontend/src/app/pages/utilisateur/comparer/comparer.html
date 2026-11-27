@@ -1,0 +1,94 @@
+<div class="comparer-page">
+  
+  <div class="top-actions">
+    <a routerLink="/annonces" class="btn-back">Retour</a>
+  </div>
+
+  <div class="page-header">
+    <h1>Comparer les biens</h1>
+    <p class="subtitle">Analysez les caractéristiques côte à côte.</p>
+  </div>
+
+  <!-- SECTION MY PRIORITIES -->
+  <div class="priorities-section">
+    <div class="priorities-header">
+      <h2>MY PRIORITIES</h2>
+      <p>Cliquez pour mettre en avant vos critères.</p>
+    </div>
+    
+    <div class="priorities-bar">
+      <button class="priority-btn" [class.active]="priorites.prix" (click)="togglePriorite('prix')">Prix</button>
+      <button class="priority-btn" [class.active]="priorites.region" (click)="togglePriorite('region')">Région</button>
+      <button class="priority-btn" [class.active]="priorites.surface" (click)="togglePriorite('surface')">Surface</button>
+      <button class="priority-btn" [class.active]="priorites.pieces" (click)="togglePriorite('pieces')">Pièces</button>
+      <button class="priority-btn" [class.active]="priorites.etat" (click)="togglePriorite('etat')">État</button>
+      <button class="priority-btn" [class.active]="priorites.categorie" (click)="togglePriorite('categorie')">Catégorie</button>
+    </div>
+  </div>
+
+  <!-- SECTION MODES DE VUE -->
+  <div class="view-modes">
+    <button [class.active]="viewMode === 'complete'" (click)="viewMode = 'complete'">Vue complète</button>
+    <button [class.active]="viewMode === 'differences'" (click)="viewMode = 'differences'">Vue différences</button>
+    <button [class.active]="viewMode === 'similitudes'" (click)="viewMode = 'similitudes'">Vue similitudes</button>
+  </div>
+
+  <!-- NOUVEAU DESIGN : GRILLE DE CARTES (Plus de tableau) -->
+  <div class="compare-grid" *ngIf="annonces.length > 0">
+    
+    <div class="compare-card" *ngFor="let a of annonces">
+      
+      <!-- Image et Titre -->
+      <div class="card-image">
+        <img [src]="a.photo_url ? (a.photo_url.startsWith('http') ? a.photo_url : 'http://localhost:8081/uploads/' + a.photo_url) : 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80'" alt="Bien">
+      </div>
+      
+      <div class="card-header">
+        <h3>{{ a.titre }}</h3>
+      </div>
+
+      <!-- Liste des caractéristiques -->
+      <div class="card-body">
+        
+        <div class="carac-row" *ngIf="priorites.prix && shouldDisplay('prix')" [ngClass]="{'priority-item': priorites.prix}">
+          <span class="label">Prix</span>
+          <span class="value">{{ formatValue(a.prix, ' DT') }}</span>
+        </div>
+
+        <div class="carac-row" *ngIf="priorites.region && shouldDisplay('region')" [ngClass]="{'priority-item': priorites.region}">
+          <span class="label">Région</span>
+          <span class="value">{{ formatValue(a.region_nom) }}</span>
+        </div>
+
+        <div class="carac-row" *ngIf="priorites.surface && shouldDisplay('surface')" [ngClass]="{'priority-item': priorites.surface}">
+          <span class="label">Surface</span>
+          <span class="value">{{ formatValue(a.surface, ' m²') }}</span>
+        </div>
+
+        <div class="carac-row" *ngIf="priorites.pieces && shouldDisplay('pieces')" [ngClass]="{'priority-item': priorites.pieces}">
+          <span class="label">Pièces</span>
+          <span class="value">{{ formatValue(a.nombre_pieces) }}</span>
+        </div>
+
+        <div class="carac-row" *ngIf="priorites.etat && shouldDisplay('etat')" [ngClass]="{'priority-item': priorites.etat}">
+          <span class="label">État</span>
+          <span class="value">{{ formatValue(a.etat) }}</span>
+        </div>
+
+        <div class="carac-row" *ngIf="priorites.categorie && shouldDisplay('categorie')" [ngClass]="{'priority-item': priorites.categorie}">
+          <span class="label">Catégorie</span>
+          <span class="value">{{ formatValue(a.categorie_nom) }}</span>
+        </div>
+
+      </div>
+
+      <!-- Bouton action -->
+      <div class="card-footer">
+        <a [routerLink]="['/annonce', a.id]" class="btn-details">Voir l'annonce</a>
+      </div>
+
+    </div>
+  </div>
+
+  <p *ngIf="annonces.length === 0" class="empty">Aucune annonce sélectionnée pour la comparaison.</p>
+</div>
