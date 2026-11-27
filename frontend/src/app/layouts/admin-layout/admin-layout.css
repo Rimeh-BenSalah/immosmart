@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== LAYOUT ========== */
+.layout {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #F1F5F9; /* Le fond gris clair de Brite */
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  width: 280px;
+  background: #FFFFFF; /* Fond blanc pour contraster avec les bordures noires */
+  color: #1E293B;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-right: 4px solid #1E293B; /* Grosse bordure noire */
+  box-shadow: 4px 0px 0px #1E293B; /* Ombre massive */
+  flex-shrink: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* ========== LOGO ========== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 8px 24px;
+  border-bottom: 3px solid #1E293B; /* Bordure épaisse */
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  background: #4F46E5; /* Le bleu indigo de Brite */
+  color: white;
+  border-radius: 8px;
+  border: 3px solid #1E293B;
+  box-shadow: 3px 3px 0px #1E293B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-text h2 {
+  color: #1E293B;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.role {
+  color: #64748B;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+/* ========== NAVIGATION ========== */
+nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Un peu plus d'espace entre les boutons */
+  overflow: hidden;
+  min-height: 0;
+}
+
+.nav-section {
+  color: #1E293B;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+  padding: 10px 12px;
+  display: block;
+  flex-shrink: 0;
+  background: #E2E8F0;
+  border: 2px solid #1E293B;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #1E293B;
+  padding: 12px 14px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 3px solid transparent; /* Prêt pour le hover */
+  transition: all 0.2s ease;
+}
+
+nav a .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* Effet au survol */
+nav a:hover {
+  background: #F8FAFC;
+  border: 3px solid #1E293B;
+  box-shadow: 4px 4px 0px #1E293B;
+  transform: translate(-2px, -2px);
+}
+
+/* ========== LIEN ACTIF (Style Brite) ========== */
+nav a.active {
+  background: #4F46E5; /* Bleu indigo */
+  color: #FFFFFF;
+  border: 3px solid #1E293B;
+  box-shadow: 4px 4px 0px #1E293B;
+  transform: translate(-2px, -2px);
+}
+
+nav a.active span {
+  color: #FFFFFF;
+}
+
+/* ========== BOUTON DÉCONNEXION ========== */
+.sidebar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #FFFFFF;
+  color: #EF4444;
+  border: 3px solid #1E293B;
+  padding: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  margin-top: 16px;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 0px #1E293B;
+  transition: all 0.2s ease;
+}
+
+.sidebar button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+  background: #FEE2E2;
+}
+
+.sidebar button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* ========== CONTENU ========== */
+.content {
+  flex: 1;
+  padding: 40px;
+  background: #F1F5F9;
+  height: 100vh;
+  overflow-y: auto; /* Permet de scroller si le contenu est grand */
+}
+
+.content h1 {
+  font-size: 32px;
+  color: #1E293B;
+  margin: 0 0 24px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  .sidebar {
+    width: 240px;
+    padding: 20px 14px;
+  }
+  .logo-text h2 { font-size: 18px; }
+  .content { padding: 24px; }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 4px solid #1E293B;
+    box-shadow: 0px 4px 0px #1E293B;
+  }
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nav-section { display: none; } /* On cache le titre "Menu principal" sur mobile */
+  .content {
+    height: auto;
+    padding: 20px;
+  }
+}

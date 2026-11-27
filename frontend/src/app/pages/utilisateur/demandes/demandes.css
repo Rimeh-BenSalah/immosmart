@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== PAGE ========== */
+.demandes-page { 
+  width: 100%; 
+  max-width: 100%; /* Changé pour que le fond prenne tout l'écran */
+  min-height: 100vh;
+  margin: 0 auto; 
+  padding: 40px 20px; 
+  font-family: 'Inter', sans-serif; 
+  color: #1E293B; 
+  
+  /* ✅ ARRIÈRE-PLAN IMAGE CLAIRE */
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+              url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat fixed;
+}
+
+/* On centre le contenu pour qu'il ne soit pas collé aux bords sur grand écran */
+.demandes-page > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== BOUTON RETOUR ========== */
+.top-actions { margin-bottom: 24px; }
+.btn-back {
+  display: inline-block; padding: 10px 20px; background: #FFFFFF; color: #1E293B;
+  border: 3px solid #1E293B; border-radius: 4px; font-weight: 800; font-size: 14px;
+  text-decoration: none; box-shadow: 4px 4px 0px #1E293B; transition: all 0.2s ease;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.btn-back:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #1E293B; background: #F8FAFC; }
+
+/* ========== EN-TÊTE ========== */
+.page-header { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #1E293B; }
+.page-header h1 { font-size: 28px; font-weight: 800; margin: 0 0 6px 0; }
+.subtitle { color: #64748B; font-weight: 500; margin: 0; }
+
+/* ========== CARTE ========== */
+.demandes-list { display: flex; flex-direction: column; gap: 24px; }
+
+.demande-card { 
+  background: #FFF; 
+  border: 3px solid #1E293B; 
+  border-radius: 8px; 
+  box-shadow: 6px 6px 0px #1E293B; 
+  overflow: hidden; 
+}
+
+/* En-tête cliquable */
+.demande-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 20px 24px;
+  background: #F8FAFC;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.demande-header:hover { background: #F1F5F9; }
+.demande-header h3 { font-size: 20px; font-weight: 800; margin: 0; }
+
+/* Statuts */
+.status { 
+  padding: 6px 14px; 
+  border-radius: 4px; 
+  font-size: 12px; 
+  font-weight: 800; 
+  text-transform: uppercase; 
+  border: 2px solid #1E293B; 
+  box-shadow: 2px 2px 0px #1E293B; 
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-green { background: #10B981; color: #FFF; }
+.status-amber { background: #F59E0B; color: #FFF; }
+.arrow { font-size: 10px; }
+
+/* Contenu */
+.demande-content {
+  padding: 24px;
+  border-top: 2px dashed #CBD5E1;
+  animation: fadeIn 0.3s ease;
+  background: #FFFFFF;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Infos */
+.date { font-size: 13px; color: #64748B; font-weight: 600; margin-bottom: 8px; }
+.annonceur-info { font-size: 14px; color: #1E293B; margin-bottom: 20px; font-weight: 500; }
+.annonceur-info strong { color: #4F46E5; font-weight: 800; }
+
+/* Boîte de discussion */
+.message-box { background: #F8FAFC; padding: 20px; border: 2px dashed #CBD5E1; border-radius: 6px; }
+.message-label { margin: 0 0 10px 0; font-size: 12px; text-transform: uppercase; color: #64748B; font-weight: 800; }
+.message { font-weight: 500; margin: 0; font-size: 15px; line-height: 1.8; color: #334155; }
+
+/* ========== ZONE DE RÉPONSE ========== */
+.reponse-section { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.reponse-section textarea {
+  width: 100%; padding: 14px; border: 3px solid #1E293B; border-radius: 6px;
+  font-family: inherit; font-size: 14px; background: #F8FAFC; color: #1E293B;
+  font-weight: 500; resize: vertical; min-height: 100px; box-sizing: border-box;
+}
+.reponse-section textarea:focus { outline: none; background: #FFFFFF; box-shadow: 4px 4px 0px #1E293B; }
+
+.btn-brutalist {
+  align-self: flex-end; padding: 12px 24px; background: #4F46E5; color: white;
+  border: 3px solid #1E293B; border-radius: 6px; cursor: pointer;
+  font-weight: 800; font-size: 14px; text-transform: uppercase; box-shadow: 4px 4px 0px #1E293B;
+}
+.btn-brutalist:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #1E293B; }
+.btn-brutalist:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #1E293B; }
+
+/* Message vide */
+.empty { text-align: center; padding: 40px; font-weight: 600; font-style: italic; background: #FFF; border: 3px dashed #CBD5E1; border-radius: 8px; }

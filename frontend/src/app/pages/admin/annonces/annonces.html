@@ -1,0 +1,54 @@
+<div class="annonces-page">
+
+  <h1>Gestion des annonces</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Annonceur</th> 
+        <th>Prix</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--BOUCLE : Pour chaque annonce (a) dans la liste, on crée une ligne <tr> -->
+      <tr *ngFor="let a of annonces">
+        <td class="name">{{ a.titre }}</td>
+        
+        <!-- Affichage du nom et prénom de l'annonceur -->
+        <td>{{ a.user_nom }} {{ a.user_prenom }}</td>
+        
+        <td>{{ a.prix }} DT</td>
+        <td>
+          <span class="badge"
+            [ngClass]="{
+              'badge-green': a.statut === 'validee',
+              'badge-amber': a.statut === 'en_attente',
+              'badge-red': a.statut === 'refusee',
+              'badge-gray': a.statut === 'desactivee'
+            }">{{ a.statut }}</span>
+        </td>
+        <td>
+          <!-- En attente : Valider / Refuser -->
+          <button class="btn-success" (click)="valider(a.id)" *ngIf="a.statut === 'en_attente'">Valider</button>
+          <button class="btn-danger" (click)="refuser(a.id)" *ngIf="a.statut === 'en_attente'">Refuser</button>
+
+          <!-- Validée : Désactiver -->
+          <button class="btn-warning" (click)="desactiver(a.id)" *ngIf="a.statut === 'validee'">Désactiver</button>
+
+          <!-- Désactivée : Réactiver -->
+          <button class="btn-success" (click)="valider(a.id)" *ngIf="a.statut === 'desactivee'">Réactiver</button>
+
+          <!-- Toujours : Supprimer -->
+          <button class="btn-danger" (click)="supprimer(a.id)">Supprimer</button>
+        </td>
+      </tr>
+      <tr *ngIf="!annonces.length">
+        <td colspan="5" class="empty">Aucune annonce</td> 
+      </tr>
+    </tbody>
+  </table>
+
+</div>

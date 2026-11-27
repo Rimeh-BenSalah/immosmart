@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== PAGE ========== */
+.users-page {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  color: #1E293B;
+}
+
+/* ========== EN-TÊTE ========== */
+.page-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #1E293B; /* Bordure épaisse */
+}
+
+.page-header h1 {
+  font-size: 28px;
+  color: #1E293B;
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #64748B;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ========== FILTRES ========== */
+.filters-group {
+  margin-bottom: 30px;
+}
+
+.filters-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px; /* Un peu plus d'espace */
+}
+
+.filter-label {
+  font-size: 12px;
+  color: #1E293B;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 4px;
+}
+
+/* Barre de séparation verticale */
+.separator {
+  width: 3px;
+  height: 24px;
+  background-color: #1E293B;
+  margin: 0 16px;
+  border-radius: 2px;
+}
+
+/* Boutons de filtres (Brutalist) */
+.filters-row button {
+  padding: 10px 18px;
+  background: #FFFFFF;
+  color: #1E293B;
+  border: 3px solid #1E293B;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0px #1E293B;
+}
+
+.filters-row button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #1E293B;
+  background: #F8FAFC;
+}
+
+.filters-row button.active {
+  background: #4F46E5; /* Bleu indigo */
+  color: white;
+  box-shadow: 3px 3px 0px #1E293B; /* On garde l'ombre noire */
+  transform: translate(1px, 1px); /* Le bouton s'enfonce */
+}
+
+/* ========== TABLEAU (Brutalist) ========== */
+table {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid #1E293B; /* Bordure massive autour du tableau */
+  border-collapse: collapse;
+  box-shadow: 6px 6px 0px #1E293B; /* Ombre massive */
+}
+
+th {
+  background: #FFFFFF;
+  color: #1E293B;
+  padding: 16px;
+  text-align: left;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 3px solid #1E293B; /* Séparation épaisse */
+}
+
+td {
+  padding: 16px;
+  border-bottom: 2px dashed #E2E8F0; /* Lignes pointillées pour l'effet croquis */
+  color: #334155;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+td.name { 
+  font-weight: 800; 
+  color: #4F46E5; /* Le nom en indigo */
+}
+
+td:last-child { text-align: center; }
+th:last-child { text-align: center; }
+
+tbody tr:hover td { background: #F8FAFC; }
+tbody tr:last-child td { border-bottom: none; }
+
+/* ========== BADGES (Brutalist) ========== */
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: capitalize;
+  border: 2px solid #1E293B; /* Bordure noire */
+  box-shadow: 2px 2px 0px #1E293B; /* Petite ombre */
+}
+
+.badge-green { background: #10B981; color: #FFFFFF; }
+.badge-red { background: #EF4444; color: #FFFFFF; }
+.badge-amber { background: #F59E0B; color: #FFFFFF; }
+.badge-gray { background: #E2E8F0; color: #1E293B; }
+
+/* ========== BOUTONS D'ACTION ========== */
+button:not(.filters-row button) {
+  padding: 8px 16px;
+  border: 2px solid #1E293B;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+  color: white;
+  font-weight: 800;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0px #1E293B;
+}
+
+button:not(.filters-row button):last-child { margin-right: 0; }
+
+button:not(.filters-row button):hover { 
+  transform: translate(-1px, -1px); 
+  box-shadow: 4px 4px 0px #1E293B;
+}
+
+button:not(.filters-row button):active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+.btn-success { background: #10B981; }
+.btn-warning { background: #F59E0B; }
+.btn-danger { background: #EF4444; }
+
+/* ========== VIDE ========== */
+.empty {
+  text-align: center;
+  color: #64748B;
+  padding: 40px;
+  font-weight: 600;
+  font-style: italic;
+  background: #F8FAFC;
+  border: 3px dashed #CBD5E1;
+  border-radius: 8px;
+}

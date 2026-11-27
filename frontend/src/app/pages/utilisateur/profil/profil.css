@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== PAGE ========== */
+.profil-page {
+  width: 100%;
+  max-width: 100%; /* Changé pour que le fond prenne tout l'écran */
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+  color: #1E293B;
+  
+  /* ✅ ARRIÈRE-PLAN IMAGE CLAIRE */
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+              url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat fixed;
+}
+
+/* On centre le contenu pour qu'il ne soit pas collé aux bords */
+.profil-page > * {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== EN-TÊTE ========== */
+.page-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #1E293B;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  color: #1E293B;
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #64748B;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ========== CONTENEUR DU FORMULAIRE ========== */
+.profil-container {
+  background: #FFFFFF;
+  border: 3px solid #1E293B;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+/* ========== TITRES DE SECTION ========== */
+.section-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1E293B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px dashed #CBD5E1;
+}
+
+/* ========== CHAMPS DU FORMULAIRE ========== */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #1E293B;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.field label small {
+  text-transform: none;
+  font-weight: 500;
+  color: #64748B;
+  font-size: 11px;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 3px solid #1E293B;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1E293B;
+  background: #F8FAFC;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+.field input:focus {
+  outline: none;
+  background: #FFFFFF;
+  box-shadow: 4px 4px 0px #1E293B;
+}
+
+/* ========== BOUTONS ========== */
+.form-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+/* Bouton Annuler */
+.btn-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E2E8F0;
+  color: #1E293B;
+  border: 3px solid #1E293B;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #1E293B;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-cancel:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+  background: #CBD5E1;
+}
+
+.btn-cancel:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* Bouton Enregistrer */
+.btn-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4F46E5;
+  color: white;
+  border: 3px solid #1E293B;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #1E293B;
+  transition: all 0.2s ease;
+}
+
+.btn-save:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1E293B;
+}
+
+.btn-save:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* ========== MESSAGES ========== */
+.success-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  background: #10B981;
+  border: 3px solid #1E293B;
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 20px;
+  box-shadow: 4px 4px 0px #1E293B;
+}
+
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  background: #EF4444;
+  border: 3px solid #1E293B;
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 20px;
+  box-shadow: 4px 4px 0px #1E293B;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .profil-container {
+    padding: 20px;
+    box-shadow: 4px 4px 0px #1E293B;
+  }
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+  .btn-save, .btn-cancel {
+    width: 100%;
+  }
+}

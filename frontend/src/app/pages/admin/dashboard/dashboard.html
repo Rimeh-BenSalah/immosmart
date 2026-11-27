@@ -1,0 +1,75 @@
+<div class="dashboard">
+
+  <!-- TITRE -->
+  <div class="header">
+    <h1>Tableau de bord</h1>
+    <span class="date">{{ today }}</span>
+  </div>
+
+  <!-- 4 CARTES -->
+  <div class="stats">
+    <div class="card">
+      <p>Utilisateurs</p>
+      <h3>{{ stats.users }}</h3>
+    </div>
+
+    <div class="card">
+      <p>Annonces</p>
+      <h3>{{ stats.annonces }}</h3>
+    </div>
+
+    <div class="card">
+      <p>En attente</p>
+      <h3>{{ stats.en_attente }}</h3>
+    </div>
+
+    <div class="card">
+      <p>Demandes</p>
+      <h3>{{ stats.demandes }}</h3>
+    </div>
+  </div>
+
+  <!-- 2 TABLEAUX -->
+  <div class="grid">
+
+    <div class="panel">
+      <h2>Dernières annonces</h2>
+      <table>
+        <thead>
+          <tr><th>Titre</th><th>Prix</th><th>Statut</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of stats.dernieres_annonces">
+            <td>{{ a.titre }}</td>
+            <td>{{ a.prix }} DT</td>
+            <td>{{ a.statut }}</td>
+          </tr>
+          <!--liste des annonces est vides-->
+          <tr *ngIf="!stats.dernieres_annonces?.length">
+            <td colspan="3" class="empty">Aucune annonce</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Derniers utilisateurs</h2>
+      <table>
+        <thead>
+          <tr><th>Nom</th><th>Rôle</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of stats.derniers_users">
+            <td>{{ u.nom }} {{ u.prenom }}</td>
+            <td>{{ u.role }}</td>
+          </tr>
+          <tr *ngIf="!stats.derniers_users?.length">
+            <td colspan="2" class="empty">Aucun utilisateur</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>

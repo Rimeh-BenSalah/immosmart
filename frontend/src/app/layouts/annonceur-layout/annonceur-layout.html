@@ -1,0 +1,53 @@
+<div class="layout">
+  <header class="navbar">
+    <div class="navbar-inner">
+      <!-- BLOC GAUCHE (Logo + Menu) -->
+      <div class="nav-left">
+        <!-- LOGO -->
+        <a routerLink="/annonceur/mes-annonces" class="logo">
+          <div class="logo-icon">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <h2>ImmoSmart</h2>
+            <span class="role">Espace Annonceur</span>
+          </div>
+        </a>
+
+        <!-- MENU GAUCHE -->
+        <nav class="nav-links">
+          <a routerLink="/annonceur/mes-annonces" routerLinkActive="active"> Mes annonces </a>
+          <a routerLink="/annonceur/demandes" routerLinkActive="active"> Demandes reçues </a>
+        </nav>
+      </div>
+
+      <!-- BLOC DROITE (Profil + Déconnexion) -->
+      <div class="nav-actions">
+        <a routerLink="/annonceur/profil" routerLinkActive="active" class="profile-btn">
+          <!-- AFFICHE LE PRÉNOM SI DISPONIBLE, SINON 'Mon profil' -->
+          {{ user?.prenom ? user.prenom : 'Mon profil' }}
+        </a>
+
+        <div class="separator"></div>
+
+        <button class="logout-btn" (click)="deconnexion()">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

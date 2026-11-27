@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ========== TITRE ========== */
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  color: #1E293B;
+  margin: 0 0 20px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* ========== TABLEAU ========== */
+table {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 8px; /* Un peu moins arrondi pour le style bloc */
+  overflow: hidden;
+  border: 3px solid #1E293B; /* Bordure noire massive */
+  box-shadow: 6px 6px 0px #1E293B; /* Ombre massive décalée */
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th {
+  background: #FFFFFF;
+  color: #1E293B;
+  padding: 16px;
+  text-align: left;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 3px solid #1E293B; /* Séparation épaisse */
+}
+
+td {
+  padding: 16px;
+  border-bottom: 2px dashed #CBD5E1; /* Lignes pointillées (style croquis) */
+  color: #334155;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+td.name {
+  font-weight: 800;
+  color: #4F46E5; /* Le bleu indigo de Brite */
+}
+
+tbody tr:hover td {
+  background: #F8FAFC;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========== BADGES ========== */
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: capitalize;
+  border: 2px solid #1E293B; /* Bordure noire */
+  box-shadow: 2px 2px 0px #1E293B; /* Petite ombre */
+}
+
+/* Couleurs pleines et vives */
+.badge-green { background: #10B981; color: #FFFFFF; }
+.badge-amber { background: #F59E0B; color: #FFFFFF; }
+.badge-red { background: #EF4444; color: #FFFFFF; }
+.badge-gray { background: #E2E8F0; color: #1E293B; }
+
+/* ========== BOUTONS ========== */
+button {
+  padding: 8px 16px;
+  border: 3px solid #1E293B; /* Bordure massive */
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 3px 3px 0px #1E293B; /* Ombre massive */
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translate(-2px, -2px); /* Le bouton se soulève */
+  box-shadow: 5px 5px 0px #1E293B; /* L'ombre grandit */
+}
+
+button:active {
+  transform: translate(2px, 2px); /* Le bouton s'enfonce */
+  box-shadow: 1px 1px 0px #1E293B;
+}
+
+/* Couleurs des boutons */
+.btn-success { background: #4F46E5; } /* Indigo (Action principale : Accepter/Activer) */
+.btn-warning { background: #F59E0B; } /* Orange (Suspendre) */
+.btn-danger { background: #EF4444; }  /* Rouge (Refuser/Supprimer) */
+
+/* ========== VIDE ========== */
+.empty {
+  text-align: center;
+  color: #64748B;
+  padding: 40px;
+  font-weight: 600;
+  font-style: italic;
+  background: #F8FAFC;
+  border: 3px dashed #CBD5E1;
+  border-radius: 8px;
+}

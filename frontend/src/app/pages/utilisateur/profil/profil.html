@@ -1,0 +1,55 @@
+<div class="profil-page">
+  <div class="page-header">
+    <h1>Mon Profil</h1>
+    <p class="subtitle">Gérez vos informations personnelles.</p>
+  </div>
+
+  <div class="profil-container" *ngIf="!isLoading">
+    <div class="section-title">Informations Personnelles</div>
+
+    <form (ngSubmit)="enregistrer()">
+      <div class="row">
+        <div class="field">
+          <label>Nom</label>
+          <input [(ngModel)]="user.nom" name="nom" required>
+        </div>
+        <div class="field">
+          <label>Prénom</label>
+          <input [(ngModel)]="user.prenom" name="prenom" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Email</label>
+          <input [(ngModel)]="user.email" type="email" name="email" required>
+        </div>
+        <div class="field">
+          <label>Téléphone</label>
+          <input [(ngModel)]="user.telephone" name="telephone">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Nouveau mot de passe </label>
+        <!-- type="password" masque le texte avec des étoiles/points -->
+        <input [(ngModel)]="user.mot_de_passe" type="password" name="mot_de_passe" placeholder="••••••••">
+      </div>
+
+      <!-- BOUTONS D'ACTION -->
+      <div class="form-actions">
+        <!-- Bouton Annuler (redirige vers l'accueil) -->
+        <button type="button" class="btn-cancel" (click)="annuler()">Annuler</button>
+        <!-- Bouton Enregistrer -->
+        <button type="submit" class="btn-save" [disabled]="!hasChanged()">Enregistrer</button>
+      </div>
+    </form>
+
+    <div class="success-msg" *ngIf="successMsg">{{ successMsg }}</div>
+    <div class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</div>
+  </div>
+  
+  <div *ngIf="isLoading" style="text-align:center; padding: 40px; font-weight:800;">
+    Chargement du profil...
+  </div>
+</div>

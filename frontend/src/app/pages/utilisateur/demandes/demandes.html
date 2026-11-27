@@ -1,0 +1,86 @@
+<!-- Conteneur principal de la page des demandes -->
+<div class="demandes-page">
+
+  <!-- BOUTON RETOUR -->
+  <div class="top-actions">
+    <!-- Permet de revenir à la page d'accueil -->
+    <a routerLink="/accueil" class="btn-back">Retour</a>
+  </div>
+
+  <!-- En-tête de la page -->
+  <div class="page-header">
+    <h1>Mes Demandes</h1>
+    <p class="subtitle">L'historique de vos contacts avec les propriétaires.</p>
+  </div>
+
+  <!-- Afficher la liste uniquement s'il existe au moins une demande -->
+  <div class="demandes-list" *ngIf="demandes.length > 0">
+
+    <!-- Répéter une carte pour chaque demande du tableau demandes -->
+    <div class="demande-card" *ngFor="let d of demandes">
+
+      <!-- En-tête cliquable (Ouvre / Ferme) -->
+      <!-- Au clic, appeler toggleDemande() avec l'ID de la demande -->
+      <div class="demande-header" (click)="toggleDemande(d.id)">
+        <!-- Afficher le titre de l'annonce concernée -->
+        <h3>{{ d.annonce_titre }}</h3>
+
+        <!-- Afficher un statut différent selon la présence d'une réponse -->
+        <span class="status" 
+              [ngClass]="d.message.includes('--- Réponse ---') ? 'status-green' : 'status-amber'">
+
+          <!-- Si le message contient « Réponse », afficher « Répondu »,
+               sinon afficher « En attente » -->
+          {{ d.message.includes('--- Réponse ---') ? 'Répondu' : 'En attente' }}
+
+          <!-- Afficher une flèche vers le haut si la carte est ouverte,
+               sinon une flèche vers le bas -->
+          <span class="arrow">{{ demandeOuverteId === d.id ? '▲' : '▼' }}</span>
+        </span>
+      </div>
+
+      <!-- CONTENU (Affiché uniquement si la carte est ouverte) -->
+      <!-- Comparer l'ID de la demande actuelle avec demandeOuverteId -->
+      <div *ngIf="demandeOuverteId === d.id" class="demande-content">
+
+        <!-- Afficher la date d'envoi au format jour/mois/année et heure -->
+        <p class="date">Envoyée le : {{ d.date_envoi | date:'dd/MM/yyyy à HH:mm' }}</p>
+
+        <!-- Afficher les informations du propriétaire uniquement
+             si son nom existe -->
+        <p class="annonceur-info" *ngIf="d.annonceur_nom">
+          <strong>Propriétaire :</strong> {{ d.annonceur_prenom }} {{ d.annonceur_nom }}
+        </p>
+
+        <!-- Discussion -->
+        <div class="message-box">
+          <!-- Titre de la zone de discussion -->
+          <p class="message-label">Discussion :</p>
+
+          <!-- Afficher le message.
+               white-space: pre-line permet de conserver les retours à la ligne -->
+          <p class="message" style="white-space: pre-line;">{{ d.message }}</p>
+        </div>
+
+        <!-- Zone de réponse -->
+        <!-- Afficher cette zone uniquement si le message contient « Réponse » -->
+        <div class="reponse-section" *ngIf="d.message.includes('--- Réponse ---')">
+
+          <!-- [(ngModel)] lie le texte saisi à la propriété d.reponse.
+               stopPropagation empêche le clic de remonter vers l'en-tête
+               et de fermer la carte -->
+          <textarea [(ngModel)]="d.reponse" placeholder="Écrivez votre réponse au propriétaire..." (click)="$event.stopPropagation()"></textarea>
+
+          <!-- Au clic, appeler repondre(d) pour envoyer la réponse.
+               stopPropagation empêche également la fermeture de la carte -->
+          <button class="btn-brutalist" (click)="repondre(d); $event.stopPropagation();">Envoyer la réponse</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Afficher ce message si aucune demande n'existe -->
+  <p *ngIf="demandes.length === 0" class="empty">Aucune demande pour le moment.</p>
+</div>
