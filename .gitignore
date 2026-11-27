@@ -1,0 +1,17 @@
+# Secrets : ne jamais versionner
+.env
+
+# Fichiers générés
+target/
+node_modules/
+dist/
+.angular/
+*.log
+
+# Éditeurs
+.idea/
+.vscode/
+
+# Photos envoyées par les utilisateurs (on garde seulement le dossier vide)
+backend/uploads/*
+!backend/uploads/.gitkeep
