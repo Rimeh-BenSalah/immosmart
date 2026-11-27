@@ -1,5 +1,5 @@
 
-# Etape 1 : construction de l'application
+# Étape 1 : Construction de l'application
 FROM maven:3.9-eclipse-temurin-17 AS build
 
 WORKDIR /app
@@ -9,7 +9,7 @@ COPY src ./src
 
 RUN mvn -B -DskipTests package
 
-# Etape 2 : image d'exécution
+# Étape 2 : Image finale
 FROM eclipse-temurin:17-jre-jammy
 
 WORKDIR /app
@@ -19,19 +19,23 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Créer un utilisateur non root
+# Créer un utilisateur non-root
 RUN groupadd -r appgroup \
     && useradd -r -g appgroup appuser
 
-# Copier le JAR avec les bonnes permissions
+# Copier le fichier JAR
 COPY --from=build --chown=appuser:appgroup /app/target/*.jar /app/app.jar
 
-# Exécuter avec un utilisateur non root
+# Créer le dossier uploads et donner les permissions
+RUN mkdir -p /app/uploads \
+    && chown -R appuser:appgroup /app/uploads
+
+# Exécuter l'application avec un utilisateur non-root
 USER appuser
 
 EXPOSE 8081
 
-# Vérifier l'état de santé de l'application
+# Vérifier la disponibilité de l'application
 HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
     CMD curl -fsS http://localhost:8081/health || exit 1
 
