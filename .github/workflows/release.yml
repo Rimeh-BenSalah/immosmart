@@ -1,3 +1,4 @@
+
 name: ImmoSmart Release
 
 on:
@@ -33,11 +34,11 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ghcr.io/rimeh-ben-salah/immosmart-backend:${{ github.ref_name }}
+          tags: ghcr.io/rimeh-bensalah/immosmart-backend:${{ github.ref_name }}
 
       - name: Publier image Frontend
         uses: docker/build-push-action@v6
         with:
           context: ./frontend
           push: true
-          tags: ghcr.io/rimeh-ben-salah/immosmart-frontend:${{ github.ref_name }}
+          tags: ghcr.io/rimeh-bensalah/immosmart-frontend:${{ github.ref_name }}
