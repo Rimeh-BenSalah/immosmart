@@ -1,17 +1,31 @@
-# Secrets : ne jamais versionner
+# Secrets et variables d'environnement
 .env
+.env.*
+!.env.example
+*.pem
+*.key
 
-# Fichiers générés
+# Fichiers générés Java / Maven
 target/
+*.class
+
+# Fichiers générés Angular / Node.js
 node_modules/
 dist/
 .angular/
+coverage/
+
+# Logs
 *.log
 
 # Éditeurs
 .idea/
 .vscode/
 
-# Photos envoyées par les utilisateurs (on garde seulement le dossier vide)
+# Système
+.DS_Store
+Thumbs.db
+
+# Photos envoyées par les utilisateurs
 backend/uploads/*
 !backend/uploads/.gitkeep
