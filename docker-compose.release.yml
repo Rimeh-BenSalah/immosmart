@@ -1,3 +1,4 @@
+
 services:
   db:
     image: mysql:8.0
@@ -38,6 +39,7 @@ services:
       DB_USER: immosmart_user
       DB_PASSWORD: ${MYSQL_APP_PASSWORD:?Mot de passe application manquant}
       APP_SECRET: ${APP_SECRET:?APP_SECRET manquante}
+      APP_VERSION: ${APP_VERSION:?APP_VERSION manquante}
 
     depends_on:
       db:
