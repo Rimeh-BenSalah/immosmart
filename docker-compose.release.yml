@@ -1,0 +1,70 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: immosmart-db-test
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Mot de passe root manquant}
+      MYSQL_DATABASE: immosmart
+      MYSQL_USER: immosmart_user
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD:?Mot de passe application manquant}
+
+    volumes:
+      - immosmart-release-db-data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/1-init.sql:ro
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mysqladmin ping -h 127.0.0.1 -uroot -p"$${MYSQL_ROOT_PASSWORD}" --silent
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    image: ghcr.io/rimeh-bensalah/immosmart-backend:${APP_VERSION:?APP_VERSION manquante}
+    container_name: immosmart-backend-test
+    restart: unless-stopped
+
+    ports:
+      - "8081:8081"
+
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: immosmart
+      DB_USER: immosmart_user
+      DB_PASSWORD: ${MYSQL_APP_PASSWORD:?Mot de passe application manquant}
+      APP_SECRET: ${APP_SECRET:?APP_SECRET manquante}
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:8081/health
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    image: ghcr.io/rimeh-bensalah/immosmart-frontend:${APP_VERSION:?APP_VERSION manquante}
+    container_name: immosmart-frontend-test
+    restart: unless-stopped
+
+    ports:
+      - "4200:8080"
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  immosmart-release-db-data:
